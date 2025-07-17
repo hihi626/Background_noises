@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './SoundPlayer.css';  // Import the CSS
+import './SoundPlayer.css';
 
 export default function SoundPlayer() {
     const soundList = [
@@ -10,6 +10,7 @@ export default function SoundPlayer() {
 
     const [currentSound, setCurrentSound] = useState(null);
     const [volume, setVolume] = useState(0.5);
+    const [isVolumeVisible, setIsVolumeVisible] = useState(false);
 
     const playSound = (sound) => {
         if (currentSound) currentSound.pause();
@@ -27,33 +28,46 @@ export default function SoundPlayer() {
     };
 
     return (
-        <div className="sound-player">
-            <div className="sound-buttons">
-                {soundList.map((sound) => (
-                    <button
-                        key={sound.id}
-                        onClick={() => playSound(sound)}
-                        className="sound-btn"
-                    >
-                        <span className="sound-icon">{sound.icon}</span>
-                        {sound.name}
-                    </button>
-                ))}
+        <>
+            <div className="sound-player">
+                <div className="sound-buttons">
+                    {soundList.map((sound) => (
+                        <button
+                            key={sound.id}
+                            onClick={() => playSound(sound)}
+                            className="sound-btn"
+                        >
+                            <span className="sound-icon">{sound.icon}</span>
+                            {sound.name}
+                        </button>
+                    ))}
+                </div>
             </div>
 
-            <div className="volume-control">
-                <label>Volume:</label>
-                <input
-                    type="range"
-                    min="0"
-                    max="1"
-                    step="0.01"
-                    value={volume}
-                    onChange={handleVolumeChange}
-                    className="volume-slider"
-                />
-                <span className="volume-value">{Math.round(volume * 100)}%</span>
+            {/* Volume Trigger Area - Moved outside sound-player */}
+            <div
+                className="volume-trigger"
+                onMouseEnter={() => setIsVolumeVisible(true)}
+            />
+
+            {/* Volume Control - Moved outside sound-player */}
+            <div
+                className={`volume-container ${isVolumeVisible ? 'visible' : ''}`}
+                onMouseLeave={() => setIsVolumeVisible(false)}
+            >
+                <div className="volume-control">
+                    <input
+                        type="range"
+                        min="0"
+                        max="1"
+                        step="0.01"
+                        value={volume}
+                        onChange={handleVolumeChange}
+                        className="volume-slider"
+                    />
+                    <span className="volume-value">{Math.round(volume * 100)}%</span>
+                </div>
             </div>
-        </div>
+        </>
     );
 }

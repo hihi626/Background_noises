@@ -1,18 +1,15 @@
 .sound-player {
     max-width: 1000px;
-    /* Wider container */
     margin: 40px auto;
     padding: 40px;
-    /* More padding */
     background: rgba(255, 255, 255, 0.08);
-    /* More transparent */
     backdrop-filter: blur(15px);
-    /* Stronger blur */
     border-radius: 20px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    /* Deeper shadow */
     border: 1px solid rgba(255, 255, 255, 0.1);
-    /* Glass border */
+    position: relative;
+    z-index: 10;
+    font-family: inherit;
 }
 
 .sound-buttons {
@@ -24,22 +21,14 @@
 
 .sound-btn {
     padding: 25px 15px;
-    /* Larger padding */
     font-size: 20px;
-    /* Larger text */
     background: rgba(255, 255, 255, 0.1);
-    /* Glass effect */
     backdrop-filter: blur(10px);
-    /* Blurry glass effect */
     border: 1px solid rgba(255, 255, 255, 0.2);
-    /* Subtle border */
     display: flex;
     flex-direction: column;
-    /* Stack icon and text */
     justify-content: center;
-    /* Center vertically */
     height: 120px;
-    /* Fixed height for uniformity */
     transition: all 0.3s ease;
     font-family: inherit;
 }
@@ -51,33 +40,79 @@
 
 .sound-icon {
     font-size: 36px;
-    /* Larger icon */
     margin-bottom: 10px;
-    /* Space between icon and text */
     font-family: inherit;
 }
 
+/* Volume Trigger Area - fixed to viewport */
+.volume-trigger {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    z-index: 90;
+    background: transparent;
+    cursor: default;
+}
+
+/* Volume Control - fixed to viewport */
+.volume-container {
+    position: fixed;
+    bottom: -80px;
+    /* Fully hidden position */
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    z-index: 100;
+    /* Above everything */
+    transition: bottom 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+    pointer-events: none;
+    font-family: inherit;
+    /* Allows clicks through when hidden */
+}
+
+.volume-container.visible {
+    bottom: 20px;
+    /* Visible position */
+    pointer-events: auto;
+    /* Enable interactions when visible */
+}
+
 .volume-control {
-    margin-top: 40px;
-    padding: 20px;
-    /* Added padding */
-    background: rgba(255, 255, 255, 0.05);
-    /* Glass effect */
-    backdrop-filter: blur(5px);
-    /* Subtle blur */
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    /* Glass border */
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 16px 35px;
+    background: rgba(25, 25, 35, 0.85);
+    backdrop-filter: blur(20px) saturate(180%);
+    border-radius: 50px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    min-width: 320px;
+    max-width: 90%;
 }
 
 .volume-slider {
     flex-grow: 1;
-    height: 8px;
-    border-radius: 4px;
+    height: 6px;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.15);
+    outline: none;
+    accent-color: #6ab7ff;
+    cursor: pointer;
+}
+
+.volume-slider:hover {
     accent-color: #4a9df7;
 }
 
 .volume-value {
-    min-width: 40px;
+    min-width: 45px;
     text-align: center;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
