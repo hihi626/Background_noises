@@ -41,6 +41,7 @@
     height: 120px;
     /* Fixed height for uniformity */
     transition: all 0.3s ease;
+    font-family: inherit;
 }
 
 .sound-btn:hover {
@@ -53,6 +54,7 @@
     /* Larger icon */
     margin-bottom: 10px;
     /* Space between icon and text */
+    font-family: inherit;
 }
 
 .volume-control {
