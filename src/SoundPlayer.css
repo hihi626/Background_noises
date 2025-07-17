@@ -1,0 +1,81 @@
+.sound-player {
+    max-width: 1000px;
+    /* Wider container */
+    margin: 40px auto;
+    padding: 40px;
+    /* More padding */
+    background: rgba(255, 255, 255, 0.08);
+    /* More transparent */
+    backdrop-filter: blur(15px);
+    /* Stronger blur */
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    /* Deeper shadow */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    /* Glass border */
+}
+
+.sound-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    width: 100%;
+}
+
+.sound-btn {
+    padding: 25px 15px;
+    /* Larger padding */
+    font-size: 20px;
+    /* Larger text */
+    background: rgba(255, 255, 255, 0.1);
+    /* Glass effect */
+    backdrop-filter: blur(10px);
+    /* Blurry glass effect */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    /* Subtle border */
+    display: flex;
+    flex-direction: column;
+    /* Stack icon and text */
+    justify-content: center;
+    /* Center vertically */
+    height: 120px;
+    /* Fixed height for uniformity */
+    transition: all 0.3s ease;
+}
+
+.sound-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.sound-icon {
+    font-size: 36px;
+    /* Larger icon */
+    margin-bottom: 10px;
+    /* Space between icon and text */
+}
+
+.volume-control {
+    margin-top: 40px;
+    padding: 20px;
+    /* Added padding */
+    background: rgba(255, 255, 255, 0.05);
+    /* Glass effect */
+    backdrop-filter: blur(5px);
+    /* Subtle blur */
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    /* Glass border */
+}
+
+.volume-slider {
+    flex-grow: 1;
+    height: 8px;
+    border-radius: 4px;
+    accent-color: #4a9df7;
+}
+
+.volume-value {
+    min-width: 40px;
+    text-align: center;
+}
